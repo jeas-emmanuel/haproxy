@@ -1,2 +1,5 @@
 ---
 # vars file for haproxy
+haproxy_package_name: haproxy
+haproxy_prerequisite_packages:
+  - software-properties-common

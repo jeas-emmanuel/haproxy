@@ -1,0 +1,8 @@
+---
+# Install haproxy
+- name: Ensure haproxy is installed
+  become: true
+  ansible.builtin.package:
+    name: "{{ haproxy_package_name }}={{ haproxy_package_version }}"
+    state: present
+    update_cache: true
