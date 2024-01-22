@@ -1,3 +1,18 @@
 ---
 # defaults file for haproxy
-haproxy_package_version: 2.7.11-1ppa1~focal
+haproxy_package_version: 2.7
+haproxy_configuration_dir: "/etc/haproxy"
+haproxy_cfg_file: "haproxy.cfg"
+
+# variables for haproxy configuration's file
+haproxy_global_section:
+  - directive: log
+    value: "/dev/log local0"
+  - directive: log
+    value: "/dev/log local0 info"
+  - directive: chroot
+    value: "/var/lib/haproxy"
+  - directive: stats
+    value: "socket /run/haproxy/admin.sock mode 660 level admin"
+  - directive: stats
+    value: "timeout 20s"

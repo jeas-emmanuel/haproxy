@@ -1,0 +1,9 @@
+---
+- name: Generate haproxy configuration's file
+  become: true
+  notify: Restart haproxy
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: "{{ haproxy_configuration_dir }}/{{ haproxy_cfg_file }}"
+    mode: '0644'
+    validate: "haproxy -c -f %s"

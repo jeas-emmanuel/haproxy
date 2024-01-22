@@ -1,0 +1,6 @@
+global
+{% if haproxy_global_section is defined and haproxy_global_section | length > 1 -%}
+{% for global in haproxy_global_section %}
+    {{ global.directive }} {{ global.value }}
+{% endfor %}
+{%- endif %}
