@@ -1,6 +1,12 @@
+{% if haproxy_global_section is defined and haproxy_global_section | length > 0 -%}
 global
-{% if haproxy_global_section is defined and haproxy_global_section | length > 1 -%}
 {% for global in haproxy_global_section %}
     {{ global.directive }} {{ global.value }}
 {% endfor %}
 {%- endif %}
+{% if haproxy_user_name is defined and haproxy_user_name | length > 0 %}
+    user {{ haproxy_user_name }}
+{% endif %}
+{% if haproxy_user_group is defined and haproxy_user_group | length > 0 %}
+    group {{ haproxy_user_group }}
+{% endif %}

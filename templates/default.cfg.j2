@@ -1,0 +1,6 @@
+{% if haproxy_default_section is defined and haproxy_default_section | length > 0 -%}
+defaults
+{% for default in haproxy_default_section %}
+    {{ default.directive }} {{ default.value }}
+{% endfor %}
+{%- endif %}

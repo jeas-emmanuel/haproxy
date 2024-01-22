@@ -4,6 +4,9 @@ haproxy_package_version: 2.7
 haproxy_configuration_dir: "/etc/haproxy"
 haproxy_cfg_file: "haproxy.cfg"
 
+haproxy_user_name: "haproxy"
+haproxy_user_group: haproxy
+
 # variables for haproxy configuration's file
 haproxy_global_section:
   - directive: log
@@ -16,3 +19,19 @@ haproxy_global_section:
     value: "socket /run/haproxy/admin.sock mode 660 level admin"
   - directive: stats
     value: "timeout 20s"
+  - directive: ca-base
+    value: /etc/ssl/certs
+  - directive: crt-base
+    value: /etc/ssl/private
+  - directive: ssl-default-bind-ciphers
+    value: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305" # noqa yaml[line-length]
+  - directive: ssl-default-bind-ciphersuites
+    value: TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+  - directive: ssl-default-bind-options
+    value: ssl-min-ver TLSv1.2 no-tls-tickets
+
+haproxy_default_section:
+  - directive: log
+    value: global
+  - directive: mode
+    value: http
